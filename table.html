@@ -27,8 +27,23 @@
 </head>
 <body>
     <div class="navbar">
-        <h1>Tlias智能学习辅助系统-林臭屁（林艺成）</h1>
+        <h1>Tlias智能学习辅助系统</h1>
         <a herf="#">退出登录</a>
     </div>
+
+    <form action="/save" method="get">
+        name: <input type="text" name="name"> <br>
+
+        password: <input type="password" name="password"><br>
+
+        gender: <input type="radio" name="gender" value="1">male
+        <label><input type="radio" name="gender" value="1">female</label><br>
+
+        hobby: <label><input type="checkbox" name="hobby" value="game">game</label>
+        
+        age: <input type="text" name="age">
+
+        <input type="submit" vaule="submit">
+    </form>
 </body>
 </html>
