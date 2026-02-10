@@ -23,27 +23,115 @@
             color: white; /* 链接颜色为白色 */
             text-decoration: none; /* 移除下划线 */
         }
+
+
+
+        .search-form{
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0px;
+        }
+
+        .search-form input[type ="text"] , .search-form select{
+            padding: 5px 15px;
+            width: 300px;
+        }
+
+        .search-form button{
+            padding: 5px 15px;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse; /* 边框合并 */
+        }
+
+        th, td {
+            border: 1px solid #ddd; /* 边框 */
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2; /* 表头背景色 */
+            font-weight: bold; /* 加粗 */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* 斑马纹效果 */
+        }
+
     </style>
 </head>
 <body>
     <div class="navbar">
         <h1>Tlias智能学习辅助系统</h1>
-        <a herf="#">退出登录</a>
+        <a herf="#">退出登录</a>s
     </div>
 
-    <form action="/save" method="get">
-        name: <input type="text" name="name"> <br>
+    <form class="search-form">
+        <label for="name">姓名:</label>
+        <input type="text" id="name" name="name" placeholder="请输入姓名">
 
-        password: <input type="password" name="password"><br>
+        <!-- password: <input type="password" name="password"><br> -->
 
-        gender: <input type="radio" name="gender" value="1">male
-        <label><input type="radio" name="gender" value="1">female</label><br>
+        <label for="gender">性别:</label>
+        <select id="gender" name="gender">
+            <option value=" "></option>
+            <option value="1">男</option>
+            <option value="2">女</option>
+        </select>
 
-        hobby: <label><input type="checkbox" name="hobby" value="game">game</label>
         
-        age: <input type="text" name="age">
+        <label for="position">职业:</label>
+        <select id="position" name="postion">
+            <option value=" "></option>
+            <option value="1">班主任</option>
+            <option value="2">讲师</option>
+            <option value="3">学工主管</option>
+            <option value="4">教研主管</option>
+            <option value="5">咨询师</option>
+        </select>
 
-        <input type="submit" vaule="submit">
+        <!-- hobby: <label><input type="checkbox" name="hobby" value="game">game</label>
+        
+        age: <input type="text" name="age"> -->
+
+        <!-- <input type="submit" vaule="submit"> -->
+         <button type="submit">查询</button>
+         <button type="reset">清空</button>
     </form>
+
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>职业</th>
+                <th>出生日期</th>
+                <th>最后操作时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>林臭屁</td>
+                <td>男</td>
+                <td>无</td>
+                <td>2003-06-12</td>
+                <td>2026-2-10 22:16</td>
+                <td class="action-button">
+                    <button type="button">编辑</button>
+                    <button type="button">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
