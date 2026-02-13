@@ -26,7 +26,32 @@
        let name ="林臭屁"
        let age = 18;
        alert(`老哥为${name},目前${age}岁`); 
+
+
+
+       function add(a,b)
+       {
+          return a+b;
+       }
+
+       let ans = add(10,77)
+       alert(ans);
+
+       let test = {
+        name: '林臭屁',
+        age: 22,
+        truth: function(){
+          alert(this.name + '为老哥');
+        }
+       }
+       test.truth();
+       alert(JSON.stringify(test));
+
+
+
+
     </script>
-    <script src="js/learn.js"></script>
+    <!-- <script src="js/learn.js"></script> -->
+     
 </body>
 </html>
