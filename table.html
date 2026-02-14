@@ -112,6 +112,7 @@
             <tr>
                 <th>姓名</th>
                 <th>性别</th>
+                <th>大学</th>
                 <th>职业</th>
                 <th>出生日期</th>
                 <th>最后操作时间</th>
@@ -123,6 +124,7 @@
             <tr>
                 <td>林臭屁</td>
                 <td>男</td>
+                <td>复旦</td>
                 <td>无</td>
                 <td>2003-06-12</td>
                 <td>2026-2-10 22:16</td>
@@ -133,5 +135,18 @@
             </tr>
         </tbody>
     </table>
+
+
+
+    <script>
+        let trs = document.querySelectorAll('tr');
+        for(let i=0; i<trs.length; i++)
+        {
+            trs[i].addEventListener('mouseenter', function(){this.style.backgroundColor = '#f2e2e2';});
+
+            trs[i].addEventListener('mouseleave', function(){this.style.backgroundColor = '#fff';});
+        }
+
+    </script>
 </body>
 </html>
