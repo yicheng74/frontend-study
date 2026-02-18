@@ -67,77 +67,103 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <h1>Tlias智能学习辅助系统</h1>
-        <a herf="#">退出登录</a>s
+    <div id="container">
+        <div class="navbar">
+            <h1>Tlias智能学习辅助系统</h1>
+            <a herf="#">退出登录</a>s
+        </div>
+
+        <form class="search-form">
+            <label for="name">姓名:</label>
+            <input type="text" id="name" name="name" placeholder="请输入姓名">
+
+            <!-- password: <input type="password" name="password"><br> -->
+
+            <label for="gender">性别:</label>
+            <select id="gender" name="gender">
+                <option value=" "></option>
+                <option value="1">男</option>
+                <option value="2">女</option>
+            </select>
+
+            
+            <label for="position">职业:</label>
+            <select id="position" name="postion">
+                <option value=" "></option>
+                <option value="1">班主任</option>
+                <option value="2">讲师</option>
+                <option value="3">学工主管</option>
+                <option value="4">教研主管</option>
+                <option value="5">咨询师</option>
+                <option value="6">无</option>
+            </select>
+
+            <!-- hobby: <label><input type="checkbox" name="hobby" value="game">game</label>
+            
+            age: <input type="text" name="age"> -->
+
+            <!-- <input type="submit" vaule="submit"> -->
+            <button type="submit">查询</button>
+            <button type="reset">清空</button>
+        </form>
+
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>大学</th>
+                    <th>职业</th>
+                    <th>出生日期</th>
+                    <th>最后操作时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>林臭屁</td>
+                    <td>男</td>
+                    <td>复旦</td>
+                    <td>无</td>
+                    <td>2003-06-12</td>
+                    <td>2026-2-10 22:16</td>
+                    <td class="action-button">
+                        <button type="button">编辑</button>
+                        <button type="button">删除</button>
+                    </td>
+                </tr>
+
+                <tr v-for="(e,index) in empList" :key="e.id">
+                    <td>{{e.name}}</td>
+                    <td>{{e.gender ==1?'男':'女'}}</td>
+                    <td>{{e.university}}</td>
+                    <td>
+                        <span v-if="e.job==1">班主任</span>
+                        <span v-else-if="e.job==2">讲师</span>
+                        <span v-else-if="e.job==3">学工主管</span>
+                        <span v-else-if="e.job==4">教研主管</span>
+                        <span v-else-if="e.job==5">咨询师</span>
+                        <span v-else-if="e.job==6">无</span>
+                        <span v-else>其他</span>
+                    </td>
+                    <td>{{e.born}}</td>
+                    <td>{{e.updatetime}}</td>
+                    <td class="action-button">
+                        <button type="button">编辑</button>
+                        <button type="button">删除</button>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
     </div>
 
-    <form class="search-form">
-        <label for="name">姓名:</label>
-        <input type="text" id="name" name="name" placeholder="请输入姓名">
 
-        <!-- password: <input type="password" name="password"><br> -->
-
-        <label for="gender">性别:</label>
-        <select id="gender" name="gender">
-            <option value=" "></option>
-            <option value="1">男</option>
-            <option value="2">女</option>
-        </select>
-
-        
-        <label for="position">职业:</label>
-        <select id="position" name="postion">
-            <option value=" "></option>
-            <option value="1">班主任</option>
-            <option value="2">讲师</option>
-            <option value="3">学工主管</option>
-            <option value="4">教研主管</option>
-            <option value="5">咨询师</option>
-        </select>
-
-        <!-- hobby: <label><input type="checkbox" name="hobby" value="game">game</label>
-        
-        age: <input type="text" name="age"> -->
-
-        <!-- <input type="submit" vaule="submit"> -->
-         <button type="submit">查询</button>
-         <button type="reset">清空</button>
-    </form>
-
-
-
-    <table>
-        <thead>
-            <tr>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>大学</th>
-                <th>职业</th>
-                <th>出生日期</th>
-                <th>最后操作时间</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <td>林臭屁</td>
-                <td>男</td>
-                <td>复旦</td>
-                <td>无</td>
-                <td>2003-06-12</td>
-                <td>2026-2-10 22:16</td>
-                <td class="action-button">
-                    <button type="button">编辑</button>
-                    <button type="button">删除</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-
-
+    
     <script>
         let trs = document.querySelectorAll('tr');
         for(let i=0; i<trs.length; i++)
@@ -148,5 +174,33 @@
         }
 
     </script>
+
+
+
+
+    <script type="module">
+        import {createApp} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+    createApp({
+    data() {
+        return{
+            empList: [
+                {
+                "name":"林艺成",
+                "gender":1,
+                "university":"台湾清华",
+                "job":"6",
+                "born": "2007-07-20",
+                "updatetime": "2026-02-18"
+
+                }
+            ]
+        }
+        
+    }
+    }).mount('#container')
+    </script>
+
+
 </body>
 </html>
