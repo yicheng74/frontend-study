@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>axios.ajax</title>
+</head>
+
+<body>
+    <input type="button" value="GET" id="btnget">
+    <input type="button" value="POST" id="btnpost">
+    
+    
+    <script scr="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+       
+        document.querySelector('#btnget').addEventListener('click' , () =>{
+            axios({
+                url: 'https://mock.apifox.cn/m1/3083103-0-default/emps/list',
+                method:'GET'
+            }).then((result) =>{
+                console.log(result);
+            }).then((err) =>{
+                console.log(err);
+            })
+        })
+        document.querySelector('#btnpost').addEventListener('click' , () =>{
+            axios({
+                url: 'https://mock.apifox.cn/m1/3083103-0-default/emps/update',
+                method:'POST',
+                data:'id=1'
+            }).then((result) =>{
+                console.log(result);
+            }).then((err) =>{
+                console.log(err);
+            })
+        })
+
+    </script>
+</body>
+</html>

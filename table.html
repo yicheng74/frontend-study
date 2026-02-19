@@ -70,25 +70,26 @@
     <div id="container">
         <div class="navbar">
             <h1>Tlias智能学习辅助系统</h1>
-            <a herf="#">退出登录</a>s
+            <a herf="#">退出登录</a>
         </div>
 
+        {{searchForm}}
         <form class="search-form">
             <label for="name">姓名:</label>
-            <input type="text" id="name" name="name" placeholder="请输入姓名">
+            <input type="text" id="name" name="name" v-model="searchForm.name" placeholder="请输入姓名">
 
             <!-- password: <input type="password" name="password"><br> -->
 
             <label for="gender">性别:</label>
-            <select id="gender" name="gender">
-                <option value=" "></option>
+            <select id="gender" name="gender" v-model="searchForm.gender">
+                <option value=" "></option> 
                 <option value="1">男</option>
                 <option value="2">女</option>
             </select>
 
             
             <label for="position">职业:</label>
-            <select id="position" name="postion">
+            <select id="position" name="postion" v-model="searchForm.job">
                 <option value=" "></option>
                 <option value="1">班主任</option>
                 <option value="2">讲师</option>
@@ -103,8 +104,8 @@
             age: <input type="text" name="age"> -->
 
             <!-- <input type="submit" vaule="submit"> -->
-            <button type="submit">查询</button>
-            <button type="reset">清空</button>
+            <button type="button" v-on:click.prevent="search">查询</button>
+            <button type="button" @click="clear">清空</button>
         </form>
 
 
@@ -163,7 +164,6 @@
     </div>
 
 
-    
     <script>
         let trs = document.querySelectorAll('tr');
         for(let i=0; i<trs.length; i++)
@@ -174,6 +174,7 @@
         }
 
     </script>
+    
 
 
 
@@ -182,25 +183,38 @@
         import {createApp} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 
     createApp({
-    data() {
-        return{
-            empList: [
-                {
-                "name":"林艺成",
-                "gender":1,
-                "university":"台湾清华",
-                "job":"6",
-                "born": "2007-07-20",
-                "updatetime": "2026-02-18"
+        data() {
+            return{
+                searchForm:{
+                    name:'',
+                    gender:'',
+                    job:''
+                },
+                empList: [
+                    {
+                    "name":"林艺成",
+                    "gender":1,
+                    "university":"台湾清华",
+                    "job":"6",
+                    "born": "2007-07-20",
+                    "updatetime": "2026-02-18"
 
-                }
-            ]
-        }
-        
-    }
+                    }
+                ]
+            }
+        },
+
+        methods:{
+            search(){
+                console.log(this.searchForm);
+            },
+
+            clear(){
+                this.searchForm = {name:'' , gender:'' , job:''};
+            }
+        },
     }).mount('#container')
     </script>
-
 
 </body>
 </html>
