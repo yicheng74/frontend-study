@@ -12,9 +12,9 @@
     <input type="button" value="POST" id="btnpost">
     
     
-    <script scr="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-       
+    <script scr="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module">
+        import axios from 'https://cdn.jsdelivr.net/npm/axios@1.6.7/+esm';
         document.querySelector('#btnget').addEventListener('click' , () =>{
             axios({
                 url: 'https://mock.apifox.cn/m1/3083103-0-default/emps/list',
