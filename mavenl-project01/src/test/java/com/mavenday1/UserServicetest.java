@@ -19,11 +19,17 @@ public class UserServicetest {
         System.out.println(gender);
     }
 
-
-    @Test
+    @Test//注解
     public void testGetGenderassert(){
         UserService userService = new UserService();
         String gender = userService.getGender("100000200010011011");
-        Assert.assertEquals("男",gender);
+        Assert.assertEquals("男",gender);//断言
     }
+
+    @Test
+    public void testGetGender1(){
+        UserService userService = new UserService();
+        Assert.assertThrows(IllegalArgumentException.class, () -> userService.getGender(""));
+    }
+    
 }
