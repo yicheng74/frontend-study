@@ -34,3 +34,35 @@ create table emp(
     update_time datetime comment '修改时间'
 ) comment '员工表';
 
+show tables;
+
+desc emp;
+
+show create table emp;
+
+alter table emp add qq varchar(13) comment 'qq号';
+
+alter table emp modify qq varchar(15);
+
+alter table emp change qq qq_num varchar(15) comment 'qq号';
+
+alter table emp drop column qq_num;
+
+alter table employee rename to emp;
+
+drop table employee;
+
+insert into emp(username, password, name, gender, phone) values('choupi', '5438', '臭屁', 1, '12345678923');
+
+insert into emp values(null, 'me', '758258', '666', 1, '12345678989', 1, 10000, '2026-03-12', '1.jpg', now(), now());
+
+insert into emp(username, password, name, gender, phone) 
+values('pichou', '38', '臭屁的屁臭', 1, '12345672323') , ('hello', '543877', '臭屁为老哥', 1, '32145678923');
+
+update emp set username = 'choupihao' , name = '臭屁好' where id = 1;
+
+update emp set entry_date = '2026-03-10';
+
+delete from emp where id = 1;
+
+delete from emp;
