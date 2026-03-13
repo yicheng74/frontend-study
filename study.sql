@@ -66,3 +66,31 @@ update emp set entry_date = '2026-03-10';
 delete from emp where id = 1;
 
 delete from emp;
+
+select name , entry_date from emp;
+
+select * from emp;
+
+select name as 姓名, entry_date as 入职日期 from emp;
+
+select distinct job from emp;
+
+select * from emp where name = '臭屁好';
+
+select * from emp where salary <= 5000;
+
+select * from emp where job is null;
+
+select * from emp where password != '123456';
+
+select * from emp where entry_date between '2000-01-01' and '2026-03-11';
+
+select * from emp where entry_date between '2000-01-01' and '2026-03-11' && gender = 2;
+
+select * from emp where job = 1 || job = 2;
+
+select * from emp where name like '___';
+
+select * from emp where name like '臭%';
+
+select * from emp where name like '%屁%';
