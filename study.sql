@@ -94,3 +94,35 @@ select * from emp where name like '___';
 select * from emp where name like '臭%';
 
 select * from emp where name like '%屁%';
+
+select count(id) from emp;
+
+select count(*) from emp;
+
+select count(1) from emp;
+
+select avg(salary) from emp;
+
+select min(salary) from emp;
+
+select max(salary) from emp;
+
+select sum(salary) from emp;
+
+select gender, count(*) from emp group by gender;
+
+select job, count(*) from emp where entry_date<='2026-03-11' group by job having count(*)>=2;
+
+select * from emp order by entry_date asc; --desc 降
+
+select * from emp order by entry_date , update_time desc;
+
+select * from emp limit 0,3;
+
+select * from emp limit 2,2;
+
+
+
+
+
+
