@@ -17,4 +17,15 @@ class UserMapperTests {
         List<User> userList = userMapper.findAll();
         userList.forEach(user -> System.out.println(user));
     }
+
+    @Test
+    public void deleteById(){
+        userMapper.deleteById(5);
+    }
+
+    @Test
+    public void testInsert(){
+        User user = new User(null, "choupi", "543877", "臭屁", 22);
+        userMapper.insert(user);
+    }
 }
