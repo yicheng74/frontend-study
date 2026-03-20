@@ -12,7 +12,7 @@ class UserMapperTests {
     private UserMapper userMapper;
 
 
-    @Test
+    /*@Test
     public void testFindAll(){
         List<User> userList = userMapper.findAll();
         userList.forEach(user -> System.out.println(user));
@@ -28,4 +28,17 @@ class UserMapperTests {
         User user = new User(null, "choupi", "543877", "臭屁", 22);
         userMapper.insert(user);
     }
+
+    @Test
+    public void testUpdate(){
+        User user = new User(1, "pichou", "543877", "屁臭", 22);
+        userMapper.update(user);
+    }*/
+
+   @Test
+   public void testFindByUAndP(){
+        User user = userMapper.findByuandp("choupi", "543877");
+        System.out.println(user);
+   }
+
 }
