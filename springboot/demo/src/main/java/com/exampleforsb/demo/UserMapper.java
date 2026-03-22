@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper{
 
-    @Select("select * from `user`")
+    //@Select("select * from `user`")
     public List<User> findAll();
 
     @Delete("delete from user where id = #{id}")

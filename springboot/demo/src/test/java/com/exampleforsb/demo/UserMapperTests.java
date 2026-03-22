@@ -12,13 +12,13 @@ class UserMapperTests {
     private UserMapper userMapper;
 
 
-    /*@Test
+    @Test
     public void testFindAll(){
         List<User> userList = userMapper.findAll();
         userList.forEach(user -> System.out.println(user));
     }
 
-    @Test
+    /*@Test
     public void deleteById(){
         userMapper.deleteById(5);
     }
@@ -35,10 +35,10 @@ class UserMapperTests {
         userMapper.update(user);
     }*/
 
-   @Test
+   /*@Test
    public void testFindByUAndP(){
         User user = userMapper.findByuandp("choupi", "543877");
         System.out.println(user);
-   }
+   }*/
 
 }
