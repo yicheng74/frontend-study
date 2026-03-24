@@ -139,4 +139,23 @@ insert into user(id, username, password, name, age) values (1, 'daqiao', '123456
 
 
 
+use tlias;
 
+
+create table dept(
+    id int unsigned primary key auto_increment comment 'ID,主键',
+    name varchar(10) not null unique comment '部门名称',
+    create_time datetime default null comment '创建时间',
+    update_time datetime default null comment '修改时间'
+) comment '部门表';
+
+insert into dept values (1, '学工部', '2024-09-25 09:47:40', '2024-09-25 09:47:40'),
+                        (2, '教研部', '2024-09-25 09:47:40', '2024-09-09 15:17:04'),
+                        (3, '咨询部', '2024-09-25 09:47:40', '2024-09-30 21:26:24'),
+                        (4, '就业部', '2024-09-25 09:47:40', '2024-09-25 09:47:40'),
+                        (5, '人事部', '2024-09-25 09:47:40', '2024-09-25 09:47:40'),
+                        (6, '行政部', '2024-11-30 20:56:37', '2024-09-30 20:56:37');
+
+
+
+select id, name, create_time, update_time from dept order by update_time desc;
