@@ -33,6 +33,13 @@ public class DeptServiceImpl implements DeptService{
     }
 
     @Override
+    public void update(Dept dept) {
+        // 只更新可变字段（名称 + 更新时间），创建时间保留
+        dept.setUpdateTime(LocalDateTime.now());
+        deptMapper.update(dept);
+    }
+
+    @Override
     public void deleteById(Integer id) {
         deptMapper.deleteById(id);
     }
