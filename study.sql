@@ -159,3 +159,55 @@ insert into dept values (1, '学工部', '2024-09-25 09:47:40', '2024-09-25 09:4
 
 
 select id, name, create_time, update_time from dept order by update_time desc;
+
+
+
+--表
+use db02;
+
+-- 部门表
+create table dept(
+    id int unsigned PRIMARY KEY AUTO_INCREMENT COMMENT 'ID,主键',
+    name varchar(10) NOT NULL UNIQUE COMMENT '部门名称',
+    create_time datetime DEFAULT NULL COMMENT '创建时间',
+    update_time datetime DEFAULT NULL COMMENT '修改时间'
+) comment '部门表';
+
+insert into dept values (1, '学工部', '2023-09-25 09:47:40', '2023-09-25 09:47:40'),
+                        (2, '教研部', '2023-09-25 09:47:40', '2023-10-09 15:17:04'),
+                        (3, '咨询部2', '2023-09-25 09:47:40', '2023-11-30 21:26:24'),
+                        (4, '就业部', '2023-09-25 09:47:40', '2023-09-29 09:47:40'),
+                        (5, '人事部', '2023-09-25 09:47:40', '2023-09-25 09:47:40'),
+                        (15, '行政部', '2023-11-30 20:56:37', '2023-11-30 20:56:37');
+
+-- 员工表
+create table emp(
+    id int unsigned primary key auto_increment comment 'ID,主键',
+    username varchar(20) not null unique comment '用户名',
+    password varchar(32) default '123456' comment '密码',
+    name varchar(10) not null comment '姓名',
+    gender tinyint unsigned not null comment '性别,1男, 2女',
+    phone char(11) not null unique comment '手机号',
+    job tinyint unsigned comment '职位 1 2 3 4 5',
+    salary int unsigned comment '薪资',
+    image varchar(255) comment '图像',
+    entry_date date comment '入职日期',
+    dept_id int unsigned comment '部门ID',
+    create_time datetime comment '创建时间',
+    update_time datetime comment '修改时间'
+) comment '员工表';
+
+
+insert into emp values
+(1,  'shinaian',   '123456', '施耐庵', 1, '13309090001', 4, 15000, '5.png',  '2000-01-01', 2, '2023-10-20 16:35:33', '2023-11-16 16:11:26'),
+(2,  'songjiang',  '123456', '宋江',   1, '13309090002', 2,  8600, '01.png', '2015-01-01', 4, '2023-10-20 16:35:33', '2023-10-20 16:35:37'),
+(3,  'luyunyi',    '123456', '卢俊义', 1, '13309090003', 2,  8900, '01.png', '2008-05-01', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:39'),
+(4,  'wuyong',     '123456', '吴用',   1, '13309090004', 2,  9200, '01.png', '2007-01-01', 3, '2023-10-20 16:35:33', '2023-10-20 16:35:41'),
+(5,  'gongsunsheng','123456','公孙胜', 1, '13309090005', 2,  9500, '01.png', '2012-12-05', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:43'),
+(6,  'huosanning', '123456', '晁盖',   1, '13309090006', 3,  6500, '01.png', '2013-09-05', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:45'),
+(7,  'chaijin',    '123456', '柴进',   1, '13309090007', 1,  4700, '01.png', '2005-08-01', 5, '2023-10-20 16:35:33', '2023-10-20 16:35:47'),
+(8,  'likui',      '123456', '李逵',   1, '13309090008', 1,  4800, '01.png', '2014-11-09', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:49'),
+(9,  'wusong',     '123456', '武松',   1, '13309090009', 1,  4900, '01.png', '2011-03-11', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:51');
+
+
+alter table emp add constraint fk_emo_dept_id foreign key (dept_id) references dept(id);
