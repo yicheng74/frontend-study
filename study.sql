@@ -211,3 +211,49 @@ insert into emp values
 
 
 alter table emp add constraint fk_emo_dept_id foreign key (dept_id) references dept(id);
+
+
+
+-- 学生、课程、选课中间表示例（与截图同款）
+create table tb_student(
+    id int auto_increment primary key comment '主键ID',
+    name varchar(10) comment '姓名',
+    no varchar(10) comment '学号'
+) comment '学生表';
+
+insert into tb_student(name, no) values ('黛绮丝', '2000100101'),
+                                       ('谢逊', '2000100102'),
+                                       ('张无忌', '2000100103'),
+                                       ('韦一笑', '2000100104');
+
+create table tb_course(
+    id int auto_increment primary key comment '主键ID',
+    name varchar(10) comment '课程名称'
+) comment '课程表';
+
+insert into tb_course(name) values ('Java'),
+                                   ('PHP'),
+                                   ('MySQL'),
+                                   ('Hadoop');
+
+create table tb_student_course(
+    id int auto_increment primary key comment '主键',
+    student_id int not null comment '学生ID',
+    course_id int not null comment '课程ID',
+    constraint fk_courseid foreign key (course_id) references tb_course(id),
+    constraint fk_studentid foreign key (student_id) references tb_student(id)
+) comment '学生课程中间表';
+
+insert into tb_student_course(student_id, course_id) values (1, 1),(1,2),(1,3),(2,2),(2,3),(3,4);
+
+
+--案例
+create table emp_experience(
+    id int unsigned auto_increment primary key comment '主键ID',
+    emp_id int  unsigned not null comment '员工ID',
+    start_date date comment '开始日期',
+    end_date date comment '结束日期',
+    company varchar(50) comment '公司名称',
+    job varchar(50) comment '职位',
+    constraint fk_empid foreign key (emp_id) references emp(id)
+) comment '工作经历表';
