@@ -257,3 +257,25 @@ create table emp_experience(
     job varchar(50) comment '职位',
     constraint fk_empid foreign key (emp_id) references emp(id)
 ) comment '工作经历表';
+
+
+
+select * from emp,dept where emp.dept_id = dept.id;
+
+-- 笛卡尔积 内连接 隐式
+select emp.id, emp.name, dept.name from emp,dept where emp.dept_id = dept.id;
+
+select emp.id, emp.name, dept.name from emp,dept where emp.dept_id = dept.id and gender = 1 and salary > 8000;
+
+-- 内连接 显式
+select emp.id, emp.name, dept.name from emp inner join dept on emp.dept_id = dept.id;
+
+select emp.id, emp.name, dept.name from emp inner join dept on emp.dept_id = dept.id where gender = 1 and salary > 8000; 
+
+-- 左外连接
+select emp.id, emp.name, dept.name from emp left join dept on emp.dept_id = dept.id;
+
+-- 右外连接
+select dept.name, emp.name from emp right join dept on emp.dept_id = dept.id;
+
+
