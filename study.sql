@@ -278,4 +278,35 @@ select emp.id, emp.name, dept.name from emp left join dept on emp.dept_id = dept
 -- 右外连接
 select dept.name, emp.name from emp right join dept on emp.dept_id = dept.id;
 
+--子查询
+select min(entry_date) from emp;
+
+select * from emp where entry_date = (select min(entry_date) from emp);
+
+select * from emp where entry_date > (select entry_date from emp where name = '施耐庵');
+
+select * from emp where dept_id in (
+    select id from dept where name = '学工部' or name = '教研部'
+);
+
+select * from emp where salary = (select salary from emp where name = '施耐庵');
+
+select * from emp where (salary, job) = (select salary, job from emp where name = '施耐庵');
+
+select dept_id, max(salary) from emp group by dept_id;
+
+select * from emp where (dept_id, salary) in (select dept_id, max(salary) from emp group by dept_id);
+
+select * from emp where dept_id = (select id from dept where name = '学工部') and entry_date > '2012-01-01';
+
+select * from emp where gender = 1 and salary < (select avg(salary) from emp);
+
+select dept.name, count(*) from emp, dept where emp.dept_id = dept.id group by dept.name having count(*)>2; 
+
+select * from emp where dept_id = (select id from dept where name = '学工部') and (salary, entry_date) > (5000, '2012-01-01') order by salary desc;
+
+
+select dept_id,avg(salary) from emp group by dept_id;
+
+select emp.* from emp , (select dept_id,avg(salary) as a_s from emp group by dept_id) as a where emp.dept_id = a.dept_id and salary < a.a_s;
 
