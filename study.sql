@@ -20,16 +20,17 @@ create table user(
 
 
 create table emp(
-    id int unsigned primary key auto_increment comment 'ID',
+    id int unsigned primary key auto_increment comment 'ID,主键',
     username varchar(20) not null unique comment '用户名',
     password varchar(32) default '123456' comment '密码',
     name varchar(10) not null comment '姓名',
-    gender tinyint unsigned not null comment '性别 , 1 男 2 女',
-    phone char(11) not null unique comment '',
-    job tinyint unsigned comment '职位 1 2 3 4 5',
+    gender tinyint unsigned not null comment '性别, 1:男, 2:女',
+    phone char(11) not null unique comment '手机号',
+    job tinyint unsigned comment '职位, 1 班主任, 2 讲师 , 3 学工主管, 4 教研主管, 5 咨询师',
     salary int unsigned comment '薪资',
+    image varchar(255) comment '头像',
     entry_date date comment '入职日期',
-    image varchar(255) comment '图像',
+    dept_id int unsigned comment '部门ID',
     create_time datetime comment '创建时间',
     update_time datetime comment '修改时间'
 ) comment '员工表';
@@ -54,7 +55,7 @@ drop table employee;
 
 insert into emp(username, password, name, gender, phone) values('choupi', '5438', '臭屁', 1, '12345678923');
 
-insert into emp values(null, 'me', '758258', '666', 1, '12345678989', 1, 10000, '2026-03-12', '1.jpg', now(), now());
+insert into emp values(null, 'me', '758258', '666', 1, '12345678989', 1, 10000, '1.jpg', '2026-03-12', null, now(), now());
 
 insert into emp(username, password, name, gender, phone) 
 values('pichou', '38', '臭屁的屁臭', 1, '12345672323') , ('hello', '543877', '臭屁为老哥', 1, '32145678923');
@@ -186,11 +187,11 @@ create table emp(
     username varchar(20) not null unique comment '用户名',
     password varchar(32) default '123456' comment '密码',
     name varchar(10) not null comment '姓名',
-    gender tinyint unsigned not null comment '性别,1男, 2女',
+    gender tinyint unsigned not null comment '性别, 1:男, 2:女',
     phone char(11) not null unique comment '手机号',
-    job tinyint unsigned comment '职位 1 2 3 4 5',
+    job tinyint unsigned comment '职位, 1 班主任, 2 讲师 , 3 学工主管, 4 教研主管, 5 咨询师',
     salary int unsigned comment '薪资',
-    image varchar(255) comment '图像',
+    image varchar(255) comment '头像',
     entry_date date comment '入职日期',
     dept_id int unsigned comment '部门ID',
     create_time datetime comment '创建时间',
@@ -198,16 +199,27 @@ create table emp(
 ) comment '员工表';
 
 
+-- 与课件一致：头像为 OSS 地址；共 19 条（表含 update_time 时在每条末尾多一列，与课件单列时间同值即可）
 insert into emp values
-(1,  'shinaian',   '123456', '施耐庵', 1, '13309090001', 4, 15000, '5.png',  '2000-01-01', 2, '2023-10-20 16:35:33', '2023-11-16 16:11:26'),
-(2,  'songjiang',  '123456', '宋江',   1, '13309090002', 2,  8600, '01.png', '2015-01-01', 4, '2023-10-20 16:35:33', '2023-10-20 16:35:37'),
-(3,  'luyunyi',    '123456', '卢俊义', 1, '13309090003', 2,  8900, '01.png', '2008-05-01', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:39'),
-(4,  'wuyong',     '123456', '吴用',   1, '13309090004', 2,  9200, '01.png', '2007-01-01', 3, '2023-10-20 16:35:33', '2023-10-20 16:35:41'),
-(5,  'gongsunsheng','123456','公孙胜', 1, '13309090005', 2,  9500, '01.png', '2012-12-05', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:43'),
-(6,  'huosanning', '123456', '晁盖',   1, '13309090006', 3,  6500, '01.png', '2013-09-05', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:45'),
-(7,  'chaijin',    '123456', '柴进',   1, '13309090007', 1,  4700, '01.png', '2005-08-01', 5, '2023-10-20 16:35:33', '2023-10-20 16:35:47'),
-(8,  'likui',      '123456', '李逵',   1, '13309090008', 1,  4800, '01.png', '2014-11-09', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:49'),
-(9,  'wusong',     '123456', '武松',   1, '13309090009', 1,  4900, '01.png', '2011-03-11', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:51');
+(1,  'shinaian',    '123456', '施耐庵', 1, '13309090001', 4, 15000, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2000-01-01', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(2,  'songjiang',   '123456', '宋江',   1, '13309090002', 2,  8600, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2015-01-01', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(3,  'luyunyi',     '123456', '卢俊义', 1, '13309090003', 2,  8900, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2008-05-01', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(4,  'wuyong',      '123456', '吴用',   1, '13309090004', 2,  9200, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2007-01-01', 3, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(5,  'gongsunsheng','123456', '公孙胜', 1, '13309090005', 2,  9500, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2012-12-05', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(6,  'huosanniang', '123456', '扈三娘', 2, '13309090006', 3,  6500, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2013-09-05', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(7,  'chaijin',     '123456', '柴进',   1, '13309090007', 1,  4700, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2005-08-01', 5, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(8,  'likui',       '123456', '李逵',   1, '13309090008', 1,  4800, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2014-11-09', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(9,  'wusong',      '123456', '武松',   1, '13309090009', 1,  4900, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2011-03-11', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(10, 'luzhishen',   '123456', '鲁智深', 1, '13309090010', 2,  9600, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2006-03-15', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(11, 'yangzhi',     '123456', '杨志',   1, '13309090011', 2,  8800, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2010-06-01', 3, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(12, 'xuning',      '123456', '徐宁',   1, '13309090012', 2,  9000, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2009-04-10', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(13, 'suochao',     '123456', '索超',   1, '13309090013', 3,  6800, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2011-01-05', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(14, 'daizong',     '123456', '戴宗',   1, '13309090014', 2,  9300, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2007-11-11', 3, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(15, 'liutang',     '123456', '刘唐',   1, '13309090015', 1,  5000, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2012-08-08', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(16, 'liying',      '123456', '李应',   1, '13309090016', 2,  9400, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2005-12-12', 2, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(17, 'shijin',      '123456', '史进',   1, '13309090017', 1,  5100, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2014-02-14', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(18, 'muhong',      '123456', '穆弘',   1, '13309090018', 2,  8200, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2010-09-09', 4, '2023-10-20 16:35:33', '2023-10-20 16:35:33'),
+(19, 'leiheng',     '123456', '雷横',   1, '13309090019', 1,  4950, 'https://web-framework.oss-cn-hangzhou.aliyuncs.com/2023/1.jpg', '2013-05-22', 1, '2023-10-20 16:35:33', '2023-10-20 16:35:33');
 
 
 alter table emp add constraint fk_emo_dept_id foreign key (dept_id) references dept(id);
@@ -310,3 +322,6 @@ select dept_id,avg(salary) from emp group by dept_id;
 
 select emp.* from emp , (select dept_id,avg(salary) as a_s from emp group by dept_id) as a where emp.dept_id = a.dept_id and salary < a.a_s;
 
+use tlias;
+
+select emp.*, dept.name from emp left join dept on emp.dept_id = dept.id;
