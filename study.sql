@@ -325,3 +325,7 @@ select emp.* from emp , (select dept_id,avg(salary) as a_s from emp group by dep
 use tlias;
 
 select emp.*, dept.name from emp left join dept on emp.dept_id = dept.id;
+
+select emp.*, dept.name from emp left join dept on emp.dept_id = dept.id limit 0,5;--5,5 10,5
+
+select count(*) from emp left join dept on emp.dept_id = dept.id;
