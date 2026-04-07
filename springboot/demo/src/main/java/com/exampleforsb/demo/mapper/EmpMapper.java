@@ -2,8 +2,9 @@ package com.exampleforsb.demo.mapper;
 
 import com.exampleforsb.demo.pojo.Emp;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -15,12 +16,18 @@ public interface EmpMapper {
     /**
      * 查询总记录数
      */
-    @Select("select count(*) from emp e left join dept d on e.dept_id = d.id")
-    Long count();
+    Long count(@Param("name") String name,
+               @Param("gender") Integer gender,
+               @Param("begin") LocalDate begin,
+               @Param("end") LocalDate end);
 
     /**
      * 分页查询
      */
-    @Select("select e.*, d.name deptName from emp e left join dept d on e.dept_id = d.id limit #{start},#{pageSize}")
-    List<Emp> list(Integer start, Integer pageSize);
+    List<Emp> list(@Param("start") Integer start,
+                   @Param("pageSize") Integer pageSize,
+                   @Param("name") String name,
+                   @Param("gender") Integer gender,
+                   @Param("begin") LocalDate begin,
+                   @Param("end") LocalDate end);
 }
