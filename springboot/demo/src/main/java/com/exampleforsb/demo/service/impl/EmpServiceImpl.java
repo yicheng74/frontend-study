@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -27,5 +28,16 @@ public class EmpServiceImpl implements EmpService{
         pageResult.setTotal(total);
         pageResult.setRows(rows);
         return pageResult;
+    }
+
+    @Override
+    public void add(Emp emp) {
+        LocalDateTime now = LocalDateTime.now();
+        emp.setCreateTime(now);
+        emp.setUpdateTime(now);
+        if (emp.getPassword() == null || emp.getPassword().trim().isEmpty()) {
+            emp.setPassword("123456");
+        }
+        empMapper.insert(emp);
     }
 }

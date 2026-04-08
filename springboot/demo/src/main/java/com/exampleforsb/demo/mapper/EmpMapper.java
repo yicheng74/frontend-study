@@ -30,4 +30,6 @@ public interface EmpMapper {
                    @Param("gender") Integer gender,
                    @Param("begin") LocalDate begin,
                    @Param("end") LocalDate end);
+
+    void insert(Emp emp);
 }
