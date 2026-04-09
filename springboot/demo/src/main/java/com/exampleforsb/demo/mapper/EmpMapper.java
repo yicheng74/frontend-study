@@ -32,4 +32,5 @@ public interface EmpMapper {
                    @Param("end") LocalDate end);
 
     void insert(Emp emp);
+
 }

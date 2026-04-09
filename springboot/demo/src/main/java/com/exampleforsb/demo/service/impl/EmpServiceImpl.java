@@ -1,11 +1,14 @@
 package com.exampleforsb.demo.service.impl;
 
+import com.exampleforsb.demo.mapper.EmpExperienceMapper;
 import com.exampleforsb.demo.mapper.EmpMapper;
 import com.exampleforsb.demo.pojo.Emp;
+import com.exampleforsb.demo.pojo.EmpExperience;
 import com.exampleforsb.demo.pojo.PageResult;
 import com.exampleforsb.demo.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,6 +20,8 @@ public class EmpServiceImpl implements EmpService{
 
     @Autowired
     private EmpMapper empMapper;
+    @Autowired
+    private EmpExperienceMapper empExperienceMapper;
 
     @Override
     public PageResult<Emp> page(Integer page, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end) {
@@ -39,5 +44,14 @@ public class EmpServiceImpl implements EmpService{
             emp.setPassword("123456");
         }
         empMapper.insert(emp);
+    }
+
+    @Transactional
+    @Override
+    public void addExperiences(Integer empId, List<EmpExperience> experienceList) {
+        if (experienceList == null || experienceList.isEmpty()) {
+            return;
+        }
+        empExperienceMapper.insertBatch(empId, experienceList);
     }
 }

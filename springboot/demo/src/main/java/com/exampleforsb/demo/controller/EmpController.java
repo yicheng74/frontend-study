@@ -1,18 +1,21 @@
 package com.exampleforsb.demo.controller;
 
 import com.exampleforsb.demo.pojo.Emp;
+import com.exampleforsb.demo.pojo.EmpExperience;
 import com.exampleforsb.demo.pojo.PageResult;
 import com.exampleforsb.demo.pojo.Result;
 import com.exampleforsb.demo.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Slf4j
@@ -40,6 +43,13 @@ public class EmpController{
     public Result add(@RequestBody Emp emp) {
         log.info("新增员工: {}", emp);
         empService.add(emp);
+        return Result.success();
+    }
+
+    @PostMapping("/emps/{empId}/experiences")
+    public Result addExperiences(@PathVariable Integer empId, @RequestBody List<EmpExperience> experienceList) {
+        log.info("批量新增员工工作经历, empId={}, 条数={}", empId, experienceList == null ? 0 : experienceList.size());
+         empService.addExperiences(empId, experienceList);
         return Result.success();
     }
 }
