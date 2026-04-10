@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class Emp {
@@ -21,4 +22,5 @@ public class Emp {
     private Integer deptId; // 关联的部门ID
     private LocalDateTime createTime; // 创建时间
     private LocalDateTime updateTime; // 修改时间
+    private List<EmpExperience> experienceList; // 工作经历列表（批量新增）
 }

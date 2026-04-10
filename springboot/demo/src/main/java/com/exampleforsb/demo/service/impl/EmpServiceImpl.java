@@ -35,6 +35,7 @@ public class EmpServiceImpl implements EmpService{
         return pageResult;
     }
 
+    @Transactional
     @Override
     public void add(Emp emp) {
         LocalDateTime now = LocalDateTime.now();
@@ -44,6 +45,9 @@ public class EmpServiceImpl implements EmpService{
             emp.setPassword("123456");
         }
         empMapper.insert(emp);
+        if (emp.getExperienceList() != null && !emp.getExperienceList().isEmpty()) {
+            empExperienceMapper.insertBatch(emp.getId(), emp.getExperienceList());
+        }
     }
 
     @Transactional
