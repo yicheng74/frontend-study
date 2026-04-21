@@ -7,6 +7,7 @@ import com.exampleforsb.demo.pojo.Result;
 import com.exampleforsb.demo.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,6 +51,14 @@ public class EmpController{
     public Result addExperiences(@PathVariable Integer empId, @RequestBody List<EmpExperience> experienceList) {
         log.info("批量新增员工工作经历, empId={}, 条数={}", empId, experienceList == null ? 0 : experienceList.size());
          empService.addExperiences(empId, experienceList);
+        return Result.success();
+    }
+
+    
+    @DeleteMapping("/emps")
+    public Result delete(@RequestParam List<Integer> ids) {
+        log.info("根据id批量删除员工:{}", ids);
+        empService.deleteByIds(ids);
         return Result.success();
     }
 }

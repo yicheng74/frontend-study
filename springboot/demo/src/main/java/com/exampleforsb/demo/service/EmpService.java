@@ -13,4 +13,6 @@ public interface EmpService{
     void add(Emp emp);
 
     void addExperiences(Integer empId, List<EmpExperience> experienceList);
+
+    void deleteByIds(List<Integer> ids);
 }

@@ -58,4 +58,14 @@ public class EmpServiceImpl implements EmpService{
         }
         empExperienceMapper.insertBatch(empId, experienceList);
     }
+
+    @Transactional
+    @Override
+    public void deleteByIds(List<Integer> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return;
+        }
+        empExperienceMapper.deleteByEmpIds(ids);
+        empMapper.deleteByIds(ids);
+    }
 }

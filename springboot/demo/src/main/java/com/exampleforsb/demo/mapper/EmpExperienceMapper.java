@@ -13,4 +13,6 @@ import java.util.List;
 public interface EmpExperienceMapper {
 
     void insertBatch(@Param("empId") Integer empId, @Param("experienceList") List<EmpExperience> experienceList);
+
+    void deleteByEmpIds(@Param("ids") List<Integer> ids);
 }
