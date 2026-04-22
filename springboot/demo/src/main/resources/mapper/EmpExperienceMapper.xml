@@ -20,4 +20,11 @@
         </foreach>
     </delete>
 
+    <select id="listByEmpId" resultType="com.exampleforsb.demo.pojo.EmpExperience">
+        select id, emp_id, start_date, end_date, company, job
+        from emp_experience
+        where emp_id = #{empId}
+        order by start_date desc, id desc
+    </select>
+
 </mapper>

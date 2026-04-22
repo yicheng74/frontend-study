@@ -14,5 +14,7 @@ public interface EmpExperienceMapper {
 
     void insertBatch(@Param("empId") Integer empId, @Param("experienceList") List<EmpExperience> experienceList);
 
+    List<EmpExperience> listByEmpId(Integer empId);
+
     void deleteByEmpIds(@Param("ids") List<Integer> ids);
 }

@@ -51,6 +51,13 @@
         values (#{username}, #{password}, #{name}, #{gender}, #{phone}, #{job}, #{salary}, #{image}, #{entryDate}, #{deptId}, #{createTime}, #{updateTime})
     </insert>
 
+    <select id="getById" resultType="com.exampleforsb.demo.pojo.Emp">
+        select e.*, d.name deptName
+        from emp e
+        left join dept d on e.dept_id = d.id
+        where e.id = #{id}
+    </select>
+
     <delete id="deleteByIds">
         delete from emp
         where id in

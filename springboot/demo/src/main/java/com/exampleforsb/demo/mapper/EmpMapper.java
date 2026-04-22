@@ -33,6 +33,8 @@ public interface EmpMapper {
 
     void insert(Emp emp);
 
+    Emp getById(Integer id);
+
     void deleteByIds(@Param("ids") List<Integer> ids);
 
 }
