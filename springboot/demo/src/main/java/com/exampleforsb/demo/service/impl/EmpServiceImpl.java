@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -77,5 +78,22 @@ public class EmpServiceImpl implements EmpService{
         }
         empExperienceMapper.deleteByEmpIds(ids);
         empMapper.deleteByIds(ids);
+    }
+
+    @Transactional
+    @Override
+    public void update(Emp emp) {
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.update(emp);
+
+        // 先根据员工ID删除原有工作经历
+        empExperienceMapper.deleteByEmpIds(Arrays.asList(emp.getId()));
+
+        // 再添加这个员工新的工作经历
+        List<EmpExperience> experienceList = emp.getExperienceList();
+        if (experienceList != null && !experienceList.isEmpty()) {
+            experienceList.forEach(experience -> experience.setEmpId(emp.getId()));
+            empExperienceMapper.insertBatch(emp.getId(), experienceList);
+        }
     }
 }
