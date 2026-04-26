@@ -1,11 +1,13 @@
 package com.exampleforsb.demo.mapper;
 
 import com.exampleforsb.demo.pojo.Emp;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 员工信息
@@ -39,4 +41,6 @@ public interface EmpMapper {
 
     void update(Emp emp);
 
+    @MapKey("pos")
+    List<Map<String, Object>> countEmpJobData();
 }
