@@ -100,5 +100,18 @@
         order by job
     </select>
 
+    <select id="countEmpGenderData" resultType="java.util.Map">
+        select
+            (case gender
+                when 1 then '男性员工'
+                when 2 then '女性员工'
+                else '其他'
+            end) as name,
+            count(*) as value
+        from emp
+        group by gender
+        order by gender
+    </select>
+
 
 </mapper>

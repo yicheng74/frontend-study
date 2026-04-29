@@ -43,4 +43,7 @@ public interface EmpMapper {
 
     @MapKey("pos")
     List<Map<String, Object>> countEmpJobData();
+
+    @MapKey("name")
+    List<Map<String, Object>> countEmpGenderData();
 }
