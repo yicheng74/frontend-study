@@ -1,6 +1,7 @@
 package com.exampleforsb.demo.mapper;
 
 import com.exampleforsb.demo.pojo.Emp;
+import com.exampleforsb.demo.pojo.LoginInfo;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,6 +15,7 @@ import java.util.Map;
  */
 @Mapper
 public interface EmpMapper {
+    LoginInfo getByUsernameAndPassword(Emp emp);
 
     /**
      * 查询总记录数

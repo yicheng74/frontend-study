@@ -2,12 +2,15 @@ package com.exampleforsb.demo.service;
 
 import com.exampleforsb.demo.pojo.Emp;
 import com.exampleforsb.demo.pojo.EmpExperience;
+import com.exampleforsb.demo.pojo.LoginInfo;
 import com.exampleforsb.demo.pojo.PageResult;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public interface EmpService{
+    LoginInfo login(Emp emp);
+
     PageResult<Emp> page(Integer page, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end);
 
     void add(Emp emp);

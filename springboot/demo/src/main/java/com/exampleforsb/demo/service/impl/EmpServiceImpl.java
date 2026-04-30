@@ -4,6 +4,7 @@ import com.exampleforsb.demo.mapper.EmpExperienceMapper;
 import com.exampleforsb.demo.mapper.EmpMapper;
 import com.exampleforsb.demo.pojo.Emp;
 import com.exampleforsb.demo.pojo.EmpExperience;
+import com.exampleforsb.demo.pojo.LoginInfo;
 import com.exampleforsb.demo.pojo.PageResult;
 import com.exampleforsb.demo.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -23,6 +25,16 @@ public class EmpServiceImpl implements EmpService{
     private EmpMapper empMapper;
     @Autowired
     private EmpExperienceMapper empExperienceMapper;
+
+    @Override
+    public LoginInfo login(Emp emp) {
+        LoginInfo info = empMapper.getByUsernameAndPassword(emp);
+        if (info == null) {
+            return null;
+        }
+        info.setToken(UUID.randomUUID().toString());
+        return info;
+    }
 
     @Override
     public PageResult<Emp> page(Integer page, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end) {
