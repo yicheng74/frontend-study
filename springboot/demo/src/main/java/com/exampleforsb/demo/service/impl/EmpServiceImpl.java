@@ -7,6 +7,8 @@ import com.exampleforsb.demo.pojo.EmpExperience;
 import com.exampleforsb.demo.pojo.LoginInfo;
 import com.exampleforsb.demo.pojo.PageResult;
 import com.exampleforsb.demo.service.EmpService;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
 
 
 @Service
@@ -32,7 +36,15 @@ public class EmpServiceImpl implements EmpService{
         if (info == null) {
             return null;
         }
-        info.setToken(UUID.randomUUID().toString());
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("id", info.getId());
+        claims.put("username", info.getUsername());
+        String jwt = Jwts.builder()
+                .signWith(SignatureAlgorithm.HS256, "eW91YXJlY2hvdXBp")
+                .addClaims(claims)
+                .setExpiration(new Date(System.currentTimeMillis() + 3600 * 1000))
+                .compact();
+        info.setToken(jwt);
         return info;
     }
 
