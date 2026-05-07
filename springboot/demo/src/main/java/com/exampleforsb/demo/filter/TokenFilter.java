@@ -6,7 +6,7 @@ import com.exampleforsb.demo.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.annotation.WebFilter;
 
-@WebFilter(urlPatterns = "/*")
+//@WebFilter(urlPatterns = "/*")
 public class TokenFilter implements Filter {
 
     @Override
