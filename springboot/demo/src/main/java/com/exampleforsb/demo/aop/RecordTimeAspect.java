@@ -55,4 +55,26 @@ public class RecordTimeAspect {
     public void afterThrowing(ProceedingJoinPoint pjp) {
         log.info("方法执行抛出异常: {}", pjp.getSignature().getName());
     }*/
+
+
+
+   /*@Before("execution(* com.exampleforsb.demo.service.impl.*.*(..))")
+   public void before(JoinPoint joinPoint) {
+    log.info("方法执行开始: {}", joinPoint.getSignature().getName());
+    Object target = joinPoint.getTarget();  
+    log.info("方法执行对象: {}", target);
+
+    Class<?> targetClass = joinPoint.getTarget().getClass();
+    log.info("方法执行类: {}", targetClass);
+
+    MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+    Method method = methodSignature.getMethod();
+    log.info("方法执行方法: {}", method);
+
+    String methodName = method.getName();
+    log.info("方法执行方法名: {}", methodName);
+    
+    Class<?>[] parameterTypes = method.getParameterTypes();
+    log.info("方法执行参数类型: {}", parameterTypes);
+   }*/
 }
