@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.exampleforsb.demo.interceptor.TokenInterceptor;
+//import com.exampleforsb.demo.interceptor.TokenInterceptor;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -18,12 +18,12 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
 
-    @Autowired
+    /*@Autowired
     private TokenInterceptor tokenInterceptor;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login");
-    }
+    }*/
 }

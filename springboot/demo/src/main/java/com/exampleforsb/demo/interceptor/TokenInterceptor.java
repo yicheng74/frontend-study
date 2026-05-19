@@ -7,7 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.stereotype.Component;
 
 
-@Component
+/*@Component
 public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -28,4 +28,4 @@ public class TokenInterceptor implements HandlerInterceptor {
             return false;
         }
     }
-}
+}*/

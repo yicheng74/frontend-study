@@ -7,7 +7,7 @@ import io.jsonwebtoken.Claims;
 import jakarta.servlet.annotation.WebFilter;
 
 //@WebFilter(urlPatterns = "/*")
-public class TokenFilter implements Filter {
+/*public class TokenFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest,
@@ -56,4 +56,4 @@ public class TokenFilter implements Filter {
         // 6. token 合法，放行
         filterChain.doFilter(request, response);
     }
-}
+}*/
