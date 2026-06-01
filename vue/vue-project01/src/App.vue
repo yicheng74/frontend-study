@@ -1,12 +1,10 @@
 <script setup>
-  import { ref } from 'vue';
-
-  const message = ref('Hello choupi');
+  import ApiDemo from './views/ApiDemo.vue';
 </script>
 
 
 <template>
-  <h1>{{message}}</h1>
+  <ApiDemo></ApiDemo>
 </template>
 
 <style scoped>
