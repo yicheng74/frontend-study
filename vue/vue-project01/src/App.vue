@@ -1,10 +1,10 @@
 <script setup>
-  import ApiDemo from './views/ApiDemo.vue';
+  import ElementDemo from './views/ElementDemo.vue';
 </script>
 
 
 <template>
-  <ApiDemo></ApiDemo>
+  <ElementDemo></ElementDemo>
 </template>
 
 <style scoped>
