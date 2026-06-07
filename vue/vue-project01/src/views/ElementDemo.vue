@@ -36,6 +36,19 @@
   const handleCurrentChange = (val) => {
     console.log(`current page: ${val}`)
   }
+
+
+  const dialogTableVisible = ref(false)
+
+  const formInline = ref({
+  user: '',
+  region: '',
+  date: '',
+})
+
+const onSubmit = () => {
+  console.log('submit!')
+}
 </script>
 
 
@@ -80,7 +93,58 @@
       @current-change="handleCurrentChange"
     />
   </div>
+
+  <div class="flex flex-wrap gap-1">
+    <el-button class="!ml-0" plain @click="dialogTableVisible = true">
+      Open a Table nested Dialog
+    </el-button>
+
+    <el-dialog v-model="dialogTableVisible" title="Shipping address" width="800">
+      <el-table :data="tableData">
+        <el-table-column property="date" label="Date" width="150" />
+        <el-table-column property="name" label="Name" width="200" />
+        <el-table-column property="address" label="Address" />
+        <el-table-column prop="address" label="Address" />
+      </el-table>
+    </el-dialog>
+  </div>
+
+  <div class="choupi">
+    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+    <el-form-item label="Approved by">
+      <el-input v-model="formInline.user" placeholder="Approved by" clearable />
+    </el-form-item>
+    <el-form-item label="Activity zone">
+      <el-select
+        v-model="formInline.region"
+        placeholder="Activity zone"
+        clearable
+      >
+        <el-option label="Zone one" value="shanghai" />
+        <el-option label="Zone two" value="beijing" />
+      </el-select>
+    </el-form-item>
+    <el-form-item label="Activity time">
+      <el-date-picker
+        v-model="formInline.date"
+        type="date"
+        placeholder="Pick a date"
+        clearable
+      />
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="onSubmit">Query</el-button>
+    </el-form-item>
+  </el-form>
+  </div>
 </template>
 <style scoped>
+  .demo-form-inline .el-input {
+    --el-input-width: 220px;
+  }
+
+  .demo-form-inline .el-select {
+    --el-select-width: 220px;
+  }
 
 </style>
