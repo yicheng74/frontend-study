@@ -1,10 +1,10 @@
 <script setup>
-  import ElementDemo from './views/ElementDemo.vue';
+  import Layout from './views/layout/index.vue';
 </script>
 
 
 <template>
-  <ElementDemo></ElementDemo>
+  <Layout></Layout>
 </template>
 
 <style scoped>
