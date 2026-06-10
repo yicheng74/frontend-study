@@ -1,5 +1,6 @@
 <script setup>
   import { EditPen, SwitchButton } from '@element-plus/icons-vue'
+  import { StarFilled, HomeFilled} from '@element-plus/icons-vue'
 </script>
 
 
@@ -21,7 +22,16 @@
 
         <el-container>
             <el-aside width="200px" class="aside">
-                左侧菜单栏
+                <el-menu>
+                    
+                    <el-sub-menu index="1">
+                        <template #title>
+                            <el-icon><HomeFilled /></el-icon>班級學員管理
+                        </template>
+                        <el-menu-item index="1-1"><el-icon><StarFilled /></el-icon>班級管理</el-menu-item>
+                        <el-menu-item index="1-2"><el-icon><StarFilled /></el-icon>學員管理</el-menu-item>
+                    </el-sub-menu>
+                </el-menu>
             </el-aside>
 
             <el-main>
