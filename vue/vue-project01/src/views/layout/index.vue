@@ -22,8 +22,12 @@
 
         <el-container>
             <el-aside width="200px" class="aside">
-                <el-menu>
+                <el-menu router>
+                    <el-menu-item index="/index">
+                        首页
+                    </el-menu-item>
                     
+
                     <el-sub-menu index="1">
                         <template #title>
                             <el-icon><HomeFilled /></el-icon>班級學員管理
