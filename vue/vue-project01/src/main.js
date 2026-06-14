@@ -7,7 +7,13 @@ import router from'./router'
 
 import './assets/main.css'
 
-createApp(App).use(ElementPlus).mount('#app')
-createApp(App).use(router).mount('#app')
+const app = createApp(App)
+
+// 3. 使用插件
+app.use(ElementPlus) 
+app.use(router)      
+
+// 4. 挂载
+app.mount('#app')
 
 

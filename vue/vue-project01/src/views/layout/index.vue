@@ -39,7 +39,7 @@
             </el-aside>
 
             <el-main>
-                右侧内容区域
+                <router-view></router-view>
             </el-main>
         </el-container>
     </el-container>
