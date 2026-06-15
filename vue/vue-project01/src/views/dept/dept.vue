@@ -1,18 +1,63 @@
 <script setup>
     import{ ref } from 'vue';
+    import { ElMessage } from 'element-plus'
 
     const tableData = ref([
-  {
-    index: '1',
-    name: 'Tom',
-    updatetime: '2026-06-14 19:36',
-  }])
+    {
+        index: '1',
+        name: 'Tom',
+        updatetime: '2026-06-14 19:36',
+    }])
+
+
+    const dialogFormVisible = ref(false)
+    const dept = ref({name:''})
+    const formTitle = ref('')
+    /*const save = async() => {
+        if(!deptFormRef.value) return;
+        deptFormRef.value.validate(async(valid)=>{
+            if(valid)
+            {
+                const result = await addApi(dept.value)
+                if(result.code)
+                {
+                    ElMessage.success('good');
+                    dialogFormVisible.value = false;
+                }
+                else
+                {
+                    ElMessage.success('老哥为臭屁')
+                }
+            }
+            else{
+
+            }
+        })
+    }*/
+    const addDept = () => {
+        dialogFormVisible.value = true;
+        formTitle.value= '新增部门';
+        dept.value = {name:''};
+        if (deptFormRef.value){
+            deptFormRef.value.resetFields();
+        }
+       
+    }
+
+    const rules = ref({
+        name: [
+            { required: true, message: 'Please input Activity name', trigger: 'blur' },
+            { min: 2, max: 10, message: 'Length should be 2 to 10', trigger: 'blur' },
+    ]})
+
+    const deptFormRef = ref()
+
 </script>
 
 <template>
     <h1>部门管理</h1>
     <div class="container">
-        <el-button type="primary">+新增</el-button>
+        <el-button type="primary" @click="addDept">+新增</el-button>
     </div>
 
     <div class="table">
@@ -32,6 +77,20 @@
             </el-table-column>
         </el-table>
     </div>
+
+    <el-dialog v-model="dialogFormVisible" title="formTitle" width="500">
+        <el-form :model="dept" :rules="rules" ref="deptFormRef">
+            <el-form-item label="部门名称" :label-width="formLabelWidth" prop="name">
+                <el-input v-model="dept.name" />
+            </el-form-item>
+        </el-form>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">Cancel</el-button>
+                <el-button type="primary" @click="dialogFormVisible = false">Confirm</el-button>
+            </div>
+        </template>
+  </el-dialog>
 </template>
 
 <style scoped>
