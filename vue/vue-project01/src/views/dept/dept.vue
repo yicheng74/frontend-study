@@ -17,8 +17,18 @@
         if(!deptFormRef.value) return;
         deptFormRef.value.validate(async(valid)=>{
             if(valid)
-            {
-                const result = await addApi(dept.value)
+            {   
+                let result;
+                if(dept.value.id)
+                {
+                    result = await updateapi(dept.value);
+                }
+                else
+                {
+                    result = await addApi(dept.value);
+                }
+
+
                 if(result.code)
                 {
                     ElMessage.success('good');
@@ -52,6 +62,21 @@
 
     const deptFormRef = ref()
 
+
+
+    /*const handleEdit = async(id) => {
+        const result = await quierybyid(id);
+        if (deptFormRef.value){
+            deptFormRef.value.resetFields();
+        }
+        if(result.code){
+            dialogFormVisible.value = true;
+            dept.value = result.data;
+            formTitle.value = 'xgbm';
+        }
+    }*/
+    
+    
 </script>
 
 <template>
