@@ -115,7 +115,7 @@
                 <el-button type="primary" @click="dialogFormVisible = false">Confirm</el-button>
             </div>
         </template>
-  </el-dialog>
+    </el-dialog>
 </template>
 
 <style scoped>

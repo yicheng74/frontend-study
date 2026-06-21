@@ -26,7 +26,7 @@
         }
     })
 
-
+    //
     const tableData = ref([{
         name: 'choupi',
         gender: 1,
@@ -40,13 +40,37 @@
     const currentPage = ref(4)
     const pageSize = ref(100)
     const background = ref(ture)
+
+
+    //+
+    const dialogFormVisible = ref(false)
+    const emp = ref({name:''})
+    const formTitle = ref('')
+
+    const rules = ref({
+        name: [
+            { required: true, message: 'Please input Activity name', trigger: 'blur' },
+            { min: 2, max: 10, message: 'Length should be 2 to 10', trigger: 'blur' },
+    ]})
+
+    const addemp = () => {
+        dialogFormVisible.value = true;
+        formTitle.value= '新增员工';
+        emp.value = {name:''};
+        if (empFormRef.value){
+            empFormRef.value.resetFields();
+        }
+       
+    }
+
+    const empFormRef = ref()
 </script>
 
 <template>
     <h1>員工管理</h1>
 
     <div class="button">
-        <el-button type="primary" @click="">+add</el-button>
+        <el-button type="primary" @click="addemp">+add</el-button>
         <el-button type="danger" @click="">delete</el-button>
     </div>
 
@@ -110,7 +134,23 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
-  </div>
+    </div>
+
+    <el-dialog v-model="dialogFormVisible" title="formTitle" width="500">
+        <el-form :model="emp" :rules="rules" ref="empFormRef">
+            <el-col :span="12">
+                <el-form-item label="员工名称" :label-width="formLabelWidth" prop="name">
+                    <el-input v-model="emp.name" />
+                </el-form-item>
+            </el-col>
+        </el-form>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">Cancel</el-button>
+                <el-button type="primary" @click="dialogFormVisible = false">Confirm</el-button>
+            </div>
+        </template>
+    </el-dialog>
 </template>
 
 <style scoped>
