@@ -44,7 +44,12 @@
 
     //+
     const dialogFormVisible = ref(false)
-    const emp = ref({name:''})
+    const emp = ref({
+        name: '',
+        gender: '',
+        position: '',
+        department: '',
+    })
     const formTitle = ref('')
 
     const rules = ref({
@@ -56,7 +61,19 @@
     const addemp = () => {
         dialogFormVisible.value = true;
         formTitle.value= '新增员工';
-        emp.value = {name:''};
+        emp.value = {
+            name: '',
+            gender: '',
+            position: '',
+            department: '',
+            experience: [
+                {
+                    dateRange: [],
+                    company: '',
+                    role: '',
+                }
+            ],
+        };
         if (empFormRef.value){
             empFormRef.value.resetFields();
         }
@@ -64,6 +81,23 @@
     }
 
     const empFormRef = ref()
+
+    // 添加工作经历
+    const addExperience = () => {
+        emp.experience.push({
+            dateRange: [],
+            company: '',
+            role: '',
+    })
+    }
+
+    // 删除工作经历
+    const removeExperience = (index) => {
+        emp.experience.splice(index, 1)
+    }
+
+    //genders
+    const genders = ref([{name:'男', value:1},{name:'女', value:2}])
 </script>
 
 <template>
@@ -142,13 +176,63 @@
                 <el-form-item label="员工名称" :label-width="formLabelWidth" prop="name">
                     <el-input v-model="emp.name" />
                 </el-form-item>
+                <el-form-item label="性别">
+                    <el-select v-model="emp.gender" placeholder="请选择性别" style="width: 100%">
+                        <el-option v-for="g in genders" :key="g.value" :label="g.name" :value="g.value" />
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="职位">
+                    <el-select v-model="emp.position" placeholder="请选择职位" style="width: 100%">
+                        <el-option label="经理" value="1" />
+                        <el-option label="职员" value="2" />
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="所属部门">
+                    <el-select v-model="emp.department" placeholder="请选择部门" style="width: 100%">
+                        <el-option label="技术部" value="tech" />
+                        <el-option label="人事部" value="hr" />
+                    </el-select>
+                </el-form-item>
             </el-col>
-        </el-form>
-        <template #footer>
-            <div class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">Cancel</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false">Confirm</el-button>
+
+            <div class="divider"></div>
+
+            <div class="work-experience-section">
+                <div class="section-title">
+                    <span>工作经历</span>
+                    <el-button type="success" size="small" class="add-btn" @click="addExperience">
+                        + 添加工作经历
+                    </el-button>
+                </div>
+
+                <div v-for="(item, index) in emp.experience" :key="index" class="experience-row">
+                    <span class="row-label">时间</span>
+                    <el-date-picker
+                        v-model="item.dateRange"
+                        type="daterange"
+                        range-separator="至"
+                        start-placeholder="开始日期"
+                        end-placeholder="结束日期"
+                        class="date-range-picker"
+                    />
+
+                    <span class="row-label">公司</span>
+                    <el-input v-model="item.company" placeholder="请输入公司名称" class="company-input" />
+
+                    <span class="row-label">职位</span>
+                    <el-input v-model="item.role" placeholder="请输入职位" class="role-input" />
+
+                    <el-button type="danger" size="default" class="delete-btn" @click="removeExperience(index)">
+                        - 删除
+                    </el-button>
+                </div>
             </div>
+        </el-form>
+            <template #footer>
+                <div class="dialog-footer">
+                    <el-button @click="dialogFormVisible = false">Cancel</el-button>
+                    <el-button type="primary" @click="dialogFormVisible = false">Confirm</el-button>
+                </div>
         </template>
     </el-dialog>
 </template>
