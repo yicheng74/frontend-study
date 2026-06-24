@@ -98,6 +98,23 @@
 
     //genders
     const genders = ref([{name:'男', value:1},{name:'女', value:2}])
+
+    //edit
+    const handleEdit = async(id) => {
+        const result = await queryInfoApi(id);
+        if(result.code){
+            dialogFormVisible.value = true;
+            formTitle.value = 'editemployee';
+            emp.value = result.data;
+            let exprList = emp.value.experience;
+            if(exprList && exprList.length>0){
+                exprList.forEach((item) => {
+                    item.dateRange = [item.begin, item.end];
+                })
+            }
+        }
+    }
+    
 </script>
 
 <template>
